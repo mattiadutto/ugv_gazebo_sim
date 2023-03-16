@@ -1,30 +1,26 @@
 <?xml version="1.0"?>
-<package>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>scout_description</name>
-  <version>0.4.2</version>
-  <description>AgileX Scout Husky URDF description</description>
+  <version>0.0.0</version>
+  <description>Agilex Scout description package</description>
+  <maintainer email="luca.bascetta@polimi.it">tgrip</maintainer>
+  <license>TODO: License declaration</license>
 
-  <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
-  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
-  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
-  <author email="paul@bovbel.com">Paul Bovbel</author>
-  <author email="dash@clearpathrobotics.com">Devon Ash</author>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <maintainer email="paul@bovbel.com">Paul Bovbel</maintainer>
-  <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <depend>ros2_control</depend>
+  <depend>gazebo_ros2_control</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>joint_trajectory_controller</depend>
+  <depend>velocity_controllers</depend>
 
-  <url type="website">http://ros.org/wiki/scout_description</url>
-  <url type="bugtracker">https://github.com/husky/husky/issues</url>
-  <url type="repository">https://github.com/husky/husky</url>
-
-  <license>BSD</license>
-
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
-  <run_depend>urdf</run_depend>
-  <run_depend>xacro</run_depend>
-  <run_depend>lms1xx</run_depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
