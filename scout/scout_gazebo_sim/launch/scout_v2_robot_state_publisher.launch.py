@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import xacro
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -18,13 +19,12 @@ def generate_launch_description():
         description='Use simulation (Gazebo) clock if true')
 
     # Load urdf file for rviz
-    urdf_path = os.path.join(
+    xacro_path = os.path.join(
         get_package_share_directory('scout_description'),
         'urdf',
-        'scout_v2.urdf')
+        'scout_v2.xacro')
 
-    with open(urdf_path, 'r') as infp:
-        robot_description_raw = infp.read()
+    robot_description_raw = xacro.process_file(xacro_path).toxml()
 
     start_rviz = ExecuteProcess(
         cmd=[[

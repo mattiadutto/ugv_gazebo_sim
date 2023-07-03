@@ -55,35 +55,3 @@ ament_export_dependencies(sensor_msgs)
 ament_export_dependencies(tf2)
 ament_package()
 
-#find_package(catkin REQUIRED COMPONENTS    
-#    roslaunch 
-#    roslint 
-#    roscpp 
-#    std_msgs
-#    sensor_msgs
-#    geometry_msgs
-#    tf2 
-#    tf2_ros
-#)
-#catkin_package(
-#  INCLUDE_DIRS include
-##   LIBRARIES 
-#  CATKIN_DEPENDS roscpp sensor_msgs
-##   DEPENDS Boost
-#)
-
-###########
-## Build ##
-###########
-
-#include_directories(
-#    include
-#    ${catkin_INCLUDE_DIRS}
-#)
-
-#add_library(scout_gazebo STATIC src/scout_skid_steer.cpp)
-#target_link_libraries(scout_gazebo ${catkin_LIBRARIES})
-
-#add_executable(scout_skid_steer_controller src/scout_skid_steer_controller.cpp)
-#target_link_libraries(scout_skid_steer_controller scout_gazebo ${catkin_LIBRARIES})
-

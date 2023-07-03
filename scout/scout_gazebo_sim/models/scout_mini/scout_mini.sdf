@@ -1,9 +1,19 @@
 <?xml version="1.0" ?>
 <sdf version='1.7'>
   <model name='scout_mini'>
-    <link name='base_link'>
+  
+    <!-- Just for testing
+    <joint name='world_to_base_link' type='fixed'>
+      <pose relative_to='__model__'>0 0 0.5 0 0 0</pose>
+      <parent>world</parent>
+      <child>base_link</child>
+    </joint> -->
+
+    <!-- Base link -->
+    <link name='base_link'> 
+      <!-- <pose relative_to='world_to_base_link'>0 0 0 0 0 0</pose> -->
+
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
         <mass>60</mass>
         <inertia>
           <ixx>2.28864</ixx>
@@ -14,8 +24,9 @@
           <izz>3.43147</izz>
         </inertia>
       </inertial>
+      
       <collision name='base_link_collision'>
-        <pose>0 0 0 1.57 -0 1.57</pose>
+        <pose>0 0 0 1.57 0 1.57</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -23,8 +34,9 @@
           </mesh>
         </geometry>
       </collision>
+      
       <visual name='base_link_visual'>
-        <pose>0 0 0 1.57 -0 1.57</pose>
+        <pose>0 0 0 1.57 0 1.57</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -33,26 +45,12 @@
         </geometry>
       </visual>
     </link>
-    <joint name='front_left_wheel' type='revolute'>
-      <pose relative_to='base_link'>0.231976 0.208252 -0.100998 -1.57 0 0</pose>
-      <parent>base_link</parent>
-      <child>front_left_wheel_link</child>
-      <axis>
-        <xyz>0 0 -1</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-      </axis>
-    </joint>
-    <link name='front_left_wheel_link'>
-      <pose relative_to='front_left_wheel'>0 0 0 0 -0 0</pose>
+
+    <!-- Scout wheels -->
+    <link name='rear_left_wheel_link'>
+      <pose relative_to='rear_left_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
         <mass>3</mass>
         <inertia>
           <ixx>0.7171</ixx>
@@ -63,17 +61,39 @@
           <izz>0.1361</izz>
         </inertia>
       </inertial>
-      <collision name='front_left_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
+      
+      <collision name='rear_left_wheel_link_collision'>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://scout_common/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
+       <surface>
+          <!-- This friction pamareter don't contain reliable data!! -->
+           <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+12</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+        </surface> 
       </collision>
-      <visual name='front_left_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+      
+      <visual name='rear_left_wheel_link_visual'>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -82,75 +102,21 @@
         </geometry>
       </visual>
     </link>
-    <joint name='front_right_wheel' type='revolute'>
-      <pose relative_to='base_link'>0.231976 -0.208252 -0.099998 1.57 -0 0</pose>
-      <parent>base_link</parent>
-      <child>front_right_wheel_link</child>
-      <axis>
-        <xyz>0 0 -1</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-      </axis>
-    </joint>
-    <link name='front_right_wheel_link'>
-      <pose relative_to='front_right_wheel'>0 0 0 0 -0 0</pose>
-      <inertial>
-        <pose>0 0 0 0 -0 0</pose>
-        <mass>3</mass>
-        <inertia>
-          <ixx>0.7171</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>0.7171</iyy>
-          <iyz>0</iyz>
-          <izz>0.1361</izz>
-        </inertia>
-      </inertial>
-      <collision name='front_right_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://scout_common/meshes/wheel.dae</uri>
-          </mesh>
-        </geometry>
-      </collision>
-      <visual name='front_right_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://scout_common/meshes/wheel.dae</uri>
-          </mesh>
-        </geometry>
-      </visual>
-    </link>
+    
     <joint name='rear_left_wheel' type='revolute'>
-      <pose relative_to='base_link'>-0.231976 0.208252 -0.100998 -1.57 0 0</pose>
+      <pose relative_to='base_link'>0.231976 -0.208252 -0.099998 1.57 0 0</pose>
+      
       <parent>base_link</parent>
       <child>rear_left_wheel_link</child>
       <axis>
-        <xyz>0 0 -1</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
+        <xyz>0 0 1</xyz>
       </axis>
     </joint>
-    <link name='rear_left_wheel_link'>
-      <pose relative_to='rear_left_wheel'>0 0 0 0 -0 0</pose>
+    
+    <link name='rear_right_wheel_link'>
+      <pose relative_to='rear_right_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
         <mass>3</mass>
         <inertia>
           <ixx>0.7171</ixx>
@@ -161,18 +127,40 @@
           <izz>0.1361</izz>
         </inertia>
       </inertial>
-      <collision name='rear_left_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
+      
+      <collision name='rear_right_wheel_link_collision'>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://scout_common/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
+        <surface>
+          <!-- This friction pamareter don't contain reliable data!! -->
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+12</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+        </surface>
       </collision>
-      <visual name='rear_left_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
-        <geometry>
+      
+      <visual name='rear_right_wheel_link_visual'>
+         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://scout_common/meshes/wheel.dae</uri>
@@ -180,26 +168,21 @@
         </geometry>
       </visual>
     </link>
+    
     <joint name='rear_right_wheel' type='revolute'>
-      <pose relative_to='base_link'>-0.231976 -0.208252 -0.099998 1.57 -0 0</pose>
+      <pose relative_to='base_link'>0.231976 0.208252 -0.100998 -1.57 0 0</pose>
+      
       <parent>base_link</parent>
       <child>rear_right_wheel_link</child>
       <axis>
         <xyz>0 0 -1</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
       </axis>
     </joint>
-    <link name='rear_right_wheel_link'>
-      <pose relative_to='rear_right_wheel'>0 0 0 0 -0 0</pose>
+    
+    <link name='front_right_wheel_link'>
+      <pose relative_to='front_right_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
         <mass>3</mass>
         <inertia>
           <ixx>0.7171</ixx>
@@ -210,17 +193,39 @@
           <izz>0.1361</izz>
         </inertia>
       </inertial>
-      <collision name='rear_right_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
+      
+      <collision name='front_right_wheel_link_collision'>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://scout_common/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
+        <surface>
+          <!-- This friction pamareter don't contain reliable data!! -->
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+12</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+        </surface>
       </collision>
-      <visual name='rear_right_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+      
+      <visual name='front_right_wheel_link_visual'>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -229,17 +234,92 @@
         </geometry>
       </visual>
     </link>
-    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <static>0</static>
+    
+    <joint name='front_right_wheel' type='revolute'>
+      <pose relative_to='base_link'>-0.231976 0.208252 -0.100998 -1.57 0 0</pose>
+      
+      <parent>base_link</parent>
+      <child>front_right_wheel_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+      </axis>
+    </joint>
+    
+    <link name='front_left_wheel_link'>
+      <pose relative_to='front_left_wheel'>0 0 0 0 0 0</pose>
+      
+      <inertial>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0.7171</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.7171</iyy>
+          <iyz>0</iyz>
+          <izz>0.1361</izz>
+        </inertia>
+      </inertial>
+      
+      <collision name='front_left_wheel_link_collision'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://scout_common/meshes/wheel.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <!-- This friction pamareter don't contain reliable data!! -->
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+12</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      
+      <visual name='front_left_wheel_link_visual'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://scout_common/meshes/wheel.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
 
+    <joint name='front_left_wheel' type='revolute'>
+      <pose relative_to='base_link'>-0.231976 -0.208252 -0.099998 1.57 0 0</pose>
+
+      <parent>base_link</parent>
+      <child>front_left_wheel_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    
+    <!-- Scout plugins -->
     <plugin name="scout_mini_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
       <ros>
         <!-- <namespace>/tb3</namespace> -->
         <remapping>~/out:=joint_states</remapping>
       </ros>
+      
       <update_rate>50</update_rate>
+      
       <joint_name>front_right_wheel</joint_name>
       <joint_name>front_left_wheel</joint_name>
       <joint_name>rear_right_wheel</joint_name>
@@ -249,13 +329,11 @@
     <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
       <!-- topics & remappings -->
       <ros>
-        <namespace>/</namespace>
-        <argument>cmd_vel:=cmd_vel</argument>
-        <argument>odom:=odom</argument>
+        <!-- <namespace>/</namespace> -->
       </ros>
         
-      <cmd_vel_timeout>0.25</cmd_vel_timeout>
-      <velocity_rolling_window_size>0.1</velocity_rolling_window_size>
+      <!-- Update rate -->
+      <update_rate>50</update_rate>
 
       <!-- Number of wheel pairs -->
       <num_wheel_pairs>2</num_wheel_pairs>
@@ -270,39 +348,19 @@
 
       <!-- kinematics -->
       <wheel_separation>0.490</wheel_separation>
+      <wheel_separation>0.490</wheel_separation>
       <wheel_diameter>0.160</wheel_diameter>
-        
-      <wheel_separation_multiplier>1.0</wheel_separation_multiplier>
-      <left_wheel_radius_multiplier>1.0</left_wheel_radius_multiplier>
-      <right_wheel_radius_multiplier>1.0</right_wheel_radius_multiplier>
-        
-      <!-- Velocity and acceleration limits -->
-      <linear>
-         <x>
-            <has_velocity_limits>true</has_velocity_limits>
-            <max_velocity>2.0</max_velocity>
-            <has_acceleration_limits>true</has_acceleration_limits>
-            <max_velocity>3.0</max_velocity>
-         </x>
-      </linear>
-      <angular>
-         <z>
-            <has_velocity_limits>true</has_velocity_limits>
-            <max_velocity>2.0</max_velocity>
-            <has_acceleration_limits>true</has_acceleration_limits>
-            <max_velocity>6.0</max_velocity>
-         </z>
-      </angular>
-       
-      <!-- output -->
-      <enable_odom_tf>false</enable_odom_tf>
-      
-      <update_rate>50.0</update_rate>
-        
-      <pose_covariance_diagonal>[0.001, 0.001, 0.001, 0.001, 0.001, 0.03]</pose_covariance_diagonal>
-      <twist_covariance_diagonal>[0.001, 0.001, 0.001, 0.001, 0.001, 0.03]</twist_covariance_diagonal>
+      <wheel_diameter>0.160</wheel_diameter>
+              
+      <!-- limits -->
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
 
-      <!-- odometry -->
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>false</publish_wheel_tf>
+
       <odometry_frame>odom</odometry_frame>
       <robot_base_frame>base_link</robot_base_frame>
     </plugin>

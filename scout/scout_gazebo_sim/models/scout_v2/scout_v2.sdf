@@ -1,9 +1,19 @@
 <?xml version="1.0" ?>
 <sdf version='1.7'>
   <model name='scout_v2'>
+  
+    <!-- Just for testing
+    <joint name='world_to_base_link' type='fixed'>
+      <pose relative_to='__model__'>0 0 0.5 0 0 0</pose>
+      <parent>world</parent>
+      <child>base_link</child>
+    </joint> -->
+
     <link name='base_link'>
+      <!-- <pose relative_to='world_to_base_link'>0 0 0 0 0 0</pose> -->
+
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <mass>50</mass>
         <inertia>
           <ixx>2.28864</ixx>
@@ -14,24 +24,27 @@
           <izz>3.43147</izz>
         </inertia>
       </inertial>
+      
       <collision name='base_link_collision'>
-        <pose>0 0 0.008 0 -0 0</pose>
+        <pose>0 0 0.008 0 0 0</pose>
         <geometry>
           <box>
             <size>0.925 0.38 0.21</size>
           </box>
         </geometry>
       </collision>
+      
       <collision name='base_link_collision_1'>
-        <pose>0 0 0.035 0 -0 0</pose>
+        <pose>0 0 0.035 0 0 0</pose>
         <geometry>
           <box>
             <size>0.154167 0.627 0.07</size>
           </box>
         </geometry>
       </collision>
+      
       <visual name='base_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
          <mesh>
             <scale>1 1 1</scale>
@@ -40,26 +53,19 @@
         </geometry>
       </visual>
     </link>
+    
     <joint name='front_left_wheel' type='revolute'>
-      <pose relative_to='base_link'>0.249 0.29153 -0.0702 0 -0 0</pose>
+      <pose relative_to='base_link'>0.249 0.29153 -0.0702 0 0 0</pose>
       <parent>base_link</parent>
       <child>front_left_wheel_link</child>
       <axis>
-        <xyz>0 -1 0</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>20</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
+        <xyz>0 1 0</xyz>
       </axis>
     </joint>
+    
     <link name='front_left_wheel_link'>
-      <pose relative_to='front_left_wheel'>0 0 0 0 -0 0</pose>
+      <pose relative_to='front_left_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
         <mass>8</mass>
@@ -72,6 +78,7 @@
           <izz>0.1171</izz>
         </inertia>
       </inertial>
+      
       <collision name='front_left_wheel_link_collision'>
         <pose>0 0 0 1.57079 -0 0</pose>
         <geometry>
@@ -97,8 +104,9 @@
           </friction>
         </surface>
       </collision>
+      
       <visual name='front_left_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -107,26 +115,19 @@
         </geometry>
       </visual>
     </link>
+    
     <joint name='front_right_wheel' type='revolute'>
-      <pose relative_to='base_link'>0.249 -0.29153 -0.0702 3.14 -0 0</pose>
+      <pose relative_to='base_link'>0.249 -0.29153 -0.0702 3.14 0 0</pose>
       <parent>base_link</parent>
       <child>front_right_wheel_link</child>
       <axis>
         <xyz>0 -1 0</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>20</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
       </axis>
     </joint>
+    
     <link name='front_right_wheel_link'>
-      <pose relative_to='front_right_wheel'>0 0 0 0 -0 0</pose>
+      <pose relative_to='front_right_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
         <mass>8</mass>
@@ -139,6 +140,7 @@
           <izz>0.1171</izz>
         </inertia>
       </inertial>
+      
       <collision name='front_right_wheel_link_collision'>
         <pose>0 0 0 1.57079 -0 0</pose>
         <geometry>
@@ -164,8 +166,9 @@
           </friction>
         </surface>
       </collision>
+      
       <visual name='front_right_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -174,26 +177,20 @@
         </geometry>
       </visual>
     </link>
+    
     <joint name='rear_left_wheel' type='revolute'>
-      <pose relative_to='base_link'>-0.249 0.29153 -0.0702 0 -0 0</pose>
+      <pose relative_to='base_link'>-0.249 0.29153 -0.0702 0 0 0</pose>
+      
       <parent>base_link</parent>
       <child>rear_left_wheel_link</child>
       <axis>
-        <xyz>0 -1 0</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>20</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
+        <xyz>0 1 0</xyz>
       </axis>
     </joint>
+    
     <link name='rear_left_wheel_link'>
-      <pose relative_to='rear_left_wheel'>0 0 0 0 -0 0</pose>
+      <pose relative_to='rear_left_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
         <mass>8</mass>
@@ -206,8 +203,9 @@
           <izz>0.1171</izz>
         </inertia>
       </inertial>
+      
       <collision name='rear_left_wheel_link_collision'>
-        <pose>0 0 0 1.57079 -0 0</pose>
+        <pose>0 0 0 1.57079 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.11653</length>
@@ -231,6 +229,7 @@
           </friction>
         </surface>
       </collision>
+      
       <visual name='rear_left_wheel_link_visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
@@ -241,28 +240,22 @@
         </geometry>
       </visual>
     </link>
+    
     <joint name='rear_right_wheel' type='revolute'>
-      <pose relative_to='base_link'>-0.249 -0.29153 -0.0702 3.14 -0 0</pose>
+      <pose relative_to='base_link'>-0.249 -0.29153 -0.0702 3.14 0 0</pose>
+      
       <parent>base_link</parent>
       <child>rear_right_wheel_link</child>
       <axis>
         <xyz>0 -1 0</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>20</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
       </axis>
     </joint>
+    
     <link name='rear_right_wheel_link'>
-      <pose relative_to='rear_right_wheel'>0 0 0 0 -0 0</pose>
+      <pose relative_to='rear_right_wheel'>0 0 0 0 0 0</pose>
+      
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <mass>8</mass>
         <inertia>
           <ixx>0.1171</ixx>
@@ -273,8 +266,9 @@
           <izz>0.1171</izz>
         </inertia>
       </inertial>
+      
       <collision name='rear_right_wheel_link_collision'>
-        <pose>0 0 0 1.57079 -0 0</pose>
+        <pose>0 0 0 1.57079 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.11653</length>
@@ -298,8 +292,9 @@
           </friction>
         </surface>
       </collision>
+      
       <visual name='rear_right_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -308,14 +303,15 @@
         </geometry>
       </visual>
     </link>
-    <static>0</static>
 
     <plugin name="scout_v2_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
       <ros>
         <!-- <namespace>/tb3</namespace> -->
         <remapping>~/out:=joint_states</remapping>
       </ros>
+      
       <update_rate>50</update_rate>
+      
       <joint_name>front_right_wheel</joint_name>
       <joint_name>front_left_wheel</joint_name>
       <joint_name>rear_right_wheel</joint_name>
@@ -325,13 +321,11 @@
     <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
       <!-- topics & remappings -->
       <ros>
-        <namespace>/</namespace>
-        <argument>cmd_vel:=cmd_vel</argument>
-        <argument>odom:=odom</argument>
+        <!-- <namespace>/</namespace> -->
       </ros>
         
-      <cmd_vel_timeout>0.25</cmd_vel_timeout>
-      <velocity_rolling_window_size>2</velocity_rolling_window_size>
+      <!-- Update rate -->
+      <update_rate>50</update_rate>
 
       <!-- Number of wheel pairs -->
       <num_wheel_pairs>2</num_wheel_pairs>
@@ -346,41 +340,25 @@
 
       <!-- kinematics -->
       <wheel_separation>0.582</wheel_separation>
+      <wheel_separation>0.582</wheel_separation>
       <wheel_diameter>0.32918</wheel_diameter>
-        
+      <wheel_diameter>0.32918</wheel_diameter>
+              
       <wheel_separation_multiplier>1.875</wheel_separation_multiplier>
       <left_wheel_radius_multiplier>1.0</left_wheel_radius_multiplier>
       <right_wheel_radius_multiplier>1.0</right_wheel_radius_multiplier>
-        
-      <!-- Velocity and acceleration limits -->
-      <linear>
-         <x>
-            <has_velocity_limits>true</has_velocity_limits>
-            <max_velocity>1.0</max_velocity>
-            <has_acceleration_limits>true</has_acceleration_limits>
-            <max_velocity>3.0</max_velocity>
-         </x>
-      </linear>
-      <angular>
-         <z>
-            <has_velocity_limits>true</has_velocity_limits>
-            <max_velocity>2.0</max_velocity>
-            <has_acceleration_limits>true</has_acceleration_limits>
-            <max_velocity>6.0</max_velocity>
-         </z>
-      </angular>
-       
-      <!-- output -->
-      <enable_odom_tf>false</enable_odom_tf>
-      
-      <update_rate>50.0</update_rate>
-      
-      <pose_covariance_diagonal>[0.001, 0.001, 0.001, 0.001, 0.001, 0.03]</pose_covariance_diagonal>
-      <twist_covariance_diagonal>[0.001, 0.001, 0.001, 0.001, 0.001, 0.03]</twist_covariance_diagonal>
 
-      <!-- odometry -->
+      <!-- limits -->
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>false</publish_wheel_tf>
+
       <odometry_frame>odom</odometry_frame>
-      <robot_base_frame>base_link</robot_base_frame>
+      <robot_base_frame>base_link</robot_base_frame>       
     </plugin>
   </model>
 </sdf>

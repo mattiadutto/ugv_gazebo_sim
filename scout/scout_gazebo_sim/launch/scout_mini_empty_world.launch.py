@@ -22,8 +22,7 @@ def generate_launch_description():
     x_pose = LaunchConfiguration('x_pose', default='0.0')
     y_pose = LaunchConfiguration('y_pose', default='0.0')
     world_name = LaunchConfiguration('world_name', default=os.path.join(
-        get_package_share_directory('scout_gazebo_sim'),
-        'worlds', 'weston_robot_empty.world'))
+        get_package_share_directory(pkg_name), 'worlds', 'empty.world'))
  
     declare_robot_namespace_arg = DeclareLaunchArgument(
         'robot_namespace', default_value='/',
@@ -31,8 +30,8 @@ def generate_launch_description():
 
     declare_world_name_arg = DeclareLaunchArgument(
         'world_name', default_value=os.path.join(
-        get_package_share_directory('scout_gazebo_sim'),
-        'worlds', 'weston_robot_empty.world'),
+        get_package_share_directory(pkg_name),
+        'worlds', 'empty.world'),
         description='Specify Gazebo world name')
 
     # Set GAZEBO environment variables
