@@ -1,15 +1,3 @@
-#<launch>
-#        <arg name="model" />
-#        <!-- Loading model files -->
-#        <param name="robot_description" command="$(find xacro)/xacro '$(find scout_description)/urdf/scout_v2.xacro'" />
-#        <!-- Launch  the joint state publisher -->
-#        <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" ></node>
-#        <!-- Launch  the robot state publisher -->
-#        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-#        <!-- Loading rviz files -->
-#        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find scout_description)/rviz/model_display.rviz" />
-#</launch>
-
 import os
 import xacro
 import launch
@@ -24,10 +12,19 @@ from ament_index_python.packages import get_package_prefix
 
  
 def generate_launch_description():
+    # Manage input arguments
+    use_gui_value = LaunchConfiguration('use_gui')
+ 
+    use_gui_launch_arg = DeclareLaunchArgument(
+        'use_gui',
+        default_value='False',
+        description='Select if you want to start the gui.'
+    )
+
     # Specify the name of the package, xacro and rviz files within the package
     pkg_name = 'scout_description'
-    xacro_file = 'scout_v2.urdf'
-    rviz_config_file = 'model_display.rviz'
+    xacro_file = 'scout_v2.xacro'
+    rviz_config_file = 'scout_v2_model_display.rviz'
 
     # Set parameters
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
@@ -42,7 +39,16 @@ def generate_launch_description():
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         output='screen',
-        parameters=[{'use_sim_time': use_sim_time}]
+        parameters=[{'use_sim_time': use_sim_time}],
+        condition=launch.conditions.IfCondition(use_gui_value)
+    )
+
+    node_joint_state_publisher = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        output='screen',
+        parameters=[{'use_sim_time': use_sim_time}],
+        condition=launch.conditions.UnlessCondition(use_gui_value)
     )
 
     node_robot_state_publisher = Node(
@@ -70,8 +76,10 @@ def generate_launch_description():
     # Run the nodes
     return LaunchDescription([
         use_sim_time_arg,
-        node_joint_state_publisher_gui,
+        use_gui_launch_arg,
         node_robot_state_publisher,
+        node_joint_state_publisher_gui,
+        node_joint_state_publisher,
         rviz,
     ])
 

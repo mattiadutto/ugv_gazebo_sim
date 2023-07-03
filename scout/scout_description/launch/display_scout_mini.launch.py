@@ -23,7 +23,7 @@ def generate_launch_description():
     
     # Specify the name of the package, xacro and rviz files within the package
     pkg_name = 'scout_description'
-    xacro_file = 'scout_mini.urdf'
+    xacro_file = 'scout_mini.xacro'
     rviz_config_file = 'scout_mini_model_display.rviz'
 
     # Set parameters
@@ -77,9 +77,9 @@ def generate_launch_description():
     return LaunchDescription([
         use_sim_time_arg,
         use_gui_launch_arg,
+        node_robot_state_publisher,
         node_joint_state_publisher_gui,
         node_joint_state_publisher,
-        node_robot_state_publisher,
         rviz,
     ])
 
