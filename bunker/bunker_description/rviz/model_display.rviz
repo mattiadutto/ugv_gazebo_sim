@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
       Splitter Ratio: 0.5
-    Tree Height: 755
+    Tree Height: 839
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -67,82 +67,86 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel1.1_Link:
+        front_left_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel1.2_Link:
+        front_left_wheel_rol1_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel1.3_Link:
+        front_left_wheel_rol2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel1_Link:
+        front_left_wheel_rol3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel2.1_Link:
+        front_right_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel2.2_Link:
+        front_right_wheel_rol1_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel2.3_Link:
+        front_right_wheel_rol2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel2_Link:
+        front_right_wheel_rol3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel3.1_Link:
+        inertial_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rear_left_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel3.2_Link:
+        rear_left_wheel_rol1_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel3.3_Link:
+        rear_left_wheel_rol2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel3_Link:
+        rear_left_wheel_rol3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel4.1_Link:
+        rear_right_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel4.2_Link:
+        rear_right_wheel_rol1_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel4.3_Link:
+        rear_right_wheel_rol2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wheel4_Link:
+        rear_right_wheel_rol3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -155,6 +159,90 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        front_left_wheel_link:
+          Value: true
+        front_left_wheel_rol1_link:
+          Value: true
+        front_left_wheel_rol2_link:
+          Value: true
+        front_left_wheel_rol3_link:
+          Value: true
+        front_right_wheel_link:
+          Value: true
+        front_right_wheel_rol1_link:
+          Value: true
+        front_right_wheel_rol2_link:
+          Value: true
+        front_right_wheel_rol3_link:
+          Value: true
+        inertial_link:
+          Value: true
+        rear_left_wheel_link:
+          Value: true
+        rear_left_wheel_rol1_link:
+          Value: true
+        rear_left_wheel_rol2_link:
+          Value: true
+        rear_left_wheel_rol3_link:
+          Value: true
+        rear_right_wheel_link:
+          Value: true
+        rear_right_wheel_rol1_link:
+          Value: true
+        rear_right_wheel_rol2_link:
+          Value: true
+        rear_right_wheel_rol3_link:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: true
+      Tree:
+        base_link:
+          front_left_wheel_link:
+            {}
+          front_left_wheel_rol1_link:
+            {}
+          front_left_wheel_rol2_link:
+            {}
+          front_left_wheel_rol3_link:
+            {}
+          front_right_wheel_link:
+            {}
+          front_right_wheel_rol1_link:
+            {}
+          front_right_wheel_rol2_link:
+            {}
+          front_right_wheel_rol3_link:
+            {}
+          inertial_link:
+            {}
+          rear_left_wheel_link:
+            {}
+          rear_left_wheel_rol1_link:
+            {}
+          rear_left_wheel_rol2_link:
+            {}
+          rear_left_wheel_rol3_link:
+            {}
+          rear_right_wheel_link:
+            {}
+          rear_right_wheel_rol1_link:
+            {}
+          rear_right_wheel_rol2_link:
+            {}
+          rear_right_wheel_rol3_link:
+            {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

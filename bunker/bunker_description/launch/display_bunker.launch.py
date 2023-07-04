@@ -14,14 +14,14 @@ from ament_index_python.packages import get_package_prefix
 def generate_launch_description():
     # Specify the name of the package, xacro and rviz files within the package
     pkg_name = 'bunker_description'
-    urdf_file = 'bunker.urdf'
+    xacro_file = 'bunker.xacro'
     rviz_config_file = 'model_display.rviz'
 
     # Set parameters
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     # Create paths to xacro and rviz files
-    xacro_path = os.path.join(get_package_share_directory(pkg_name),'urdf',urdf_file)
+    xacro_path = os.path.join(get_package_share_directory(pkg_name),'urdf',xacro_file)
     rviz_config_path = os.path.join(get_package_share_directory(pkg_name),'rviz',rviz_config_file)
     robot_description_raw = xacro.process_file(xacro_path).toxml()
 
