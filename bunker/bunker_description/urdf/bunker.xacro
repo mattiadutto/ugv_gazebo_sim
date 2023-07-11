@@ -12,6 +12,7 @@
 
   <!-- Base link -->
   <link name="base_link">
+
     <visual>
       <origin xyz="0.53 -0.392 -0.358" rpy="1.57 0 3.14" />
       <geometry>
@@ -21,6 +22,7 @@
         <color rgba="0.5 0.5 0.5  1" />
       </material>
     </visual>
+    
     <collision>
       <origin xyz="0.53 -0.392 -0.358" rpy="1.57 0 3.14" />
       <geometry>
@@ -50,6 +52,7 @@
       <inertia ixx="0.000378440530116381" ixy="5.60822736805661E-21" ixz="3.04207802822425E-20"
       iyy="0.000378440530116381" iyz="-7.56626980356474E-21" izz="0.000710150518820894" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1_Link.stl" />
@@ -58,6 +61,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1_Link.stl" />
@@ -79,6 +83,7 @@
       <inertia ixx="6.58750963981394E-05" ixy="-1.46558944641469E-09" ixz="-8.34967331718859E-12" 
       iyy="6.58795984671517E-05" iyz="-2.4786046130206E-12" izz="0.000112721820875598" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1.1_Link.stl" />
@@ -87,6 +92,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1.1_Link.stl" />
@@ -108,6 +114,7 @@
       <inertia ixx="0.000179574259018481" ixy="1.15789498120549E-20" ixz="1.3563351843978E-21"
       iyy="0.000179574259018481" iyz="6.0369822309622E-23" izz="0.000332594534732139" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1.2_Link.stl" />
@@ -116,6 +123,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1.2_Link.stl" />
@@ -137,6 +145,7 @@
       <inertia ixx="0.000105254202004996" ixy="1.32328029886322E-08" ixz="3.84294589102693E-11"
       iyy="0.000105248656147198" iyz="-1.41155611914915E-11" izz="0.000173280771745758" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1.3_Link.stl" />
@@ -145,6 +154,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel1.3_Link.stl" />
@@ -166,6 +176,7 @@
       <inertia ixx="0.000378440530116381" ixy="3.37302217863781E-21" ixz="2.71827270955143E-20"
       iyy="0.000378440530116381" iyz="-7.32821644893157E-21" izz="0.000710150518820894" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2_Link.stl" />
@@ -174,6 +185,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2_Link.stl" />
@@ -195,6 +207,7 @@
       <inertia ixx="6.58750963981394E-05" ixy="-1.46558944642761E-09" ixz="-8.34967332343028E-12"
       iyy="6.58795984671517E-05" iyz="-2.47860459929511E-12" izz="0.000112721820875598" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2.1_Link.stl" />
@@ -203,6 +216,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2.1_Link.stl" />
@@ -224,6 +238,7 @@
       <inertia ixx="0.00017957425901848" ixy="6.28960386226657E-21" ixz="2.14010788664762E-21"
       iyy="0.00017957425901848" iyz="1.27709655724716E-22" izz="0.000332594534732139" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2.2_Link.stl" />
@@ -232,6 +247,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2.2_Link.stl" />
@@ -253,6 +269,7 @@
       <inertia ixx="0.000105035118852508" ixy="1.32328029886296E-08" ixz="3.84294589110161E-11"
       iyy="0.00010502957299471" iyz="-1.41155611875745E-11" izz="0.00017298179736849" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2.3_Link.stl" />
@@ -261,6 +278,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel2.3_Link.stl" />
@@ -282,6 +300,7 @@
       <inertia ixx="0.00232456013775523" ixy="-1.61343020248111E-09" ixz="-4.5670735364335E-13"
       iyy="0.00232456564213727" iyz="-1.36036258272812E-18" izz="0.00308347787030649" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3_Link.stl" />
@@ -290,6 +309,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3_Link.stl" />
@@ -311,6 +331,7 @@
       <inertia ixx="0.000179574259018481" ixy="-1.73824343982442E-20" ixz="-2.53159654382751E-21"
       iyy="0.000179574259018481" iyz="-3.13741449878515E-21" izz="0.000332594534732139" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3.1_Link.stl" />
@@ -319,6 +340,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3.1_Link.stl" />
@@ -340,6 +362,7 @@
       <inertia ixx="0.00017957425901848" ixy="9.82929052458426E-22" ixz="1.10990388135291E-21"
       iyy="0.00017957425901848" iyz="-4.81322327079121E-21" izz="0.000332594534732139" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3.2_Link.stl" />
@@ -348,6 +371,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3.2_Link.stl" />
@@ -369,6 +393,7 @@
       <inertia ixx="0.000105264944409738" ixy="7.98231761628902E-12" ixz="6.80400273605472E-11"
       iyy="0.000105238344260685" iyz="-2.72106317781962E-11" izz="0.000173281039335396" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3.3_Link.stl" />
@@ -377,6 +402,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel3.3_Link.stl" />
@@ -398,6 +424,7 @@
       <inertia ixx="0.00232456564213727" ixy="-1.6134302023684E-09" ixz="-3.67391703208082E-19"
       iyy="0.00232456013775523" iyz="-4.56707494796216E-13" izz="0.00308347787030649" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4_Link.stl" />
@@ -406,6 +433,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4_Link.stl" />
@@ -427,6 +455,7 @@
       <inertia ixx="0.000179574259018481" ixy="-7.93399024302093E-21" ixz="-2.13342044570487E-21"
       iyy="0.000179574259018481" iyz="-3.23624373974149E-21" izz="0.000332594534732139" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4.1_Link.stl" />
@@ -435,6 +464,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4.1_Link.stl" />
@@ -456,6 +486,7 @@
       <inertia ixx="0.00017957425901848" ixy="6.3005828905746E-22" ixz="1.1753358195074E-22"
       iyy="0.00017957425901848" iyz="-3.27347099653111E-21" izz="0.000332594534732139" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4.2_Link.stl" />
@@ -464,6 +495,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4.2_Link.stl" />
@@ -485,6 +517,7 @@
       <inertia ixx="0.000105264944409738" ixy="7.98231761858719E-12" ixz="6.80400273764357E-11"
       iyy="0.000105238344260685" iyz="-2.72106317797361E-11" izz="0.000173281039335396" />
     </inertial>
+    
     <visual>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4.3_Link.stl" />
@@ -493,6 +526,7 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+    
     <collision>
       <geometry>
         <mesh filename="package://bunker_description/meshes/wheel4.3_Link.stl" />
