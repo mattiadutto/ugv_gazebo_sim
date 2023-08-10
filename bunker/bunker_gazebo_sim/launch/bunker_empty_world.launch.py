@@ -7,7 +7,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
 
 def generate_launch_description():
@@ -18,21 +18,23 @@ def generate_launch_description():
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
  
     # Arguments and parameters
+    use_rviz = LaunchConfiguration('use_rviz', default='true')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     x_pose = LaunchConfiguration('x_pose', default='0.0')
     y_pose = LaunchConfiguration('y_pose', default='0.0')
-    world_name = LaunchConfiguration('world_name', default=os.path.join(
-        get_package_share_directory(pkg_name), 'worlds', 'empty.world'))
+    world_name = LaunchConfiguration('world_name', default='empty.world')
 
     declare_robot_namespace_arg = DeclareLaunchArgument(
-        'robot_namespace', default_value='/',
+        'robot_namespace', default_value='/bunker',
         description='Specify namespace of the robot')
 
     declare_world_name_arg = DeclareLaunchArgument(
-        'world_name', default_value=os.path.join(
-        get_package_share_directory(pkg_name),
-        'worlds', 'empty.world'),
+        'world_name', default_value=world_name,
         description='Specify Gazebo world name')
+
+    declare_user_rviz_arg = DeclareLaunchArgument(
+        'use_rviz', default_value=use_rviz,
+        description='Run rviz if true')
 
     # Set GAZEBO environment variables
     install_dir = get_package_prefix(pkg_name)
@@ -47,7 +49,8 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
         ),
-        launch_arguments={'world': world_name}.items()
+        launch_arguments={'world': PathJoinSubstitution([get_package_share_directory(pkg_name), 
+            'worlds', world_name])}.items()
     )
 
     gzclient_cmd = IncludeLaunchDescription(
@@ -60,7 +63,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(launch_file_dir, 'bunker_robot_state_publisher.launch.py')
         ),
-        launch_arguments={'use_sim_time': use_sim_time}.items()
+        launch_arguments={'use_rviz': use_rviz, 'use_sim_time': use_sim_time}.items()
     )
 
     spawn_scout_cmd = IncludeLaunchDescription(
@@ -78,6 +81,7 @@ def generate_launch_description():
     # Declare the launch options
     ld.add_action(declare_robot_namespace_arg)
     ld.add_action(declare_world_name_arg)
+    ld.add_action(declare_user_rviz_arg)
 
     # Add the commands to the launch description
     ld.add_action(gzserver_cmd)
