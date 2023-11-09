@@ -15,20 +15,24 @@ from nav2_common.launch import ReplaceString
 def generate_launch_description():
     # Specify the name of the package
     pkg_name = 'scout_gazebo_sim'
-    namespace = 'scout_v2'
 
     launch_file_dir = os.path.join(get_package_share_directory(pkg_name), 'launch')
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
  
     # Arguments and parameters
     use_rviz = LaunchConfiguration('use_rviz', default='true')
-    rviz_config_file = LaunchConfiguration('rviz_config_file', default='scout_v2_model_display.rviz')
+    rviz_config_file = LaunchConfiguration('rviz_config_file', default='scout_mini_model_display.rviz')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    x_pose = LaunchConfiguration('x_pose', default='0.0')
-    y_pose = LaunchConfiguration('y_pose', default='0.0')
-    yaw_pose = LaunchConfiguration('yaw_pose', default='3.14')
+    robot1_x_pose = LaunchConfiguration('robot1_x_pose', default='-0.5')
+    robot1_y_pose = LaunchConfiguration('robot1_y_pose', default='-1.0')
+    robot1_yaw_pose = LaunchConfiguration('robot1_yaw_pose', default='3.14')
+    robot2_x_pose = LaunchConfiguration('robot2_x_pose', default='-0.5')
+    robot2_y_pose = LaunchConfiguration('robot2_y_pose', default='1.0')
+    robot2_yaw_pose = LaunchConfiguration('robot2_yaw_pose', default='3.14')
     world_name = LaunchConfiguration('world_name', default='empty.world')
-
+    robot1_namespace = LaunchConfiguration('robot1_namespace', default='scout_mini_1')
+    robot2_namespace = LaunchConfiguration('robot2_namespace', default='scout_mini_2')
+ 
     declare_world_name_arg = DeclareLaunchArgument(
         'world_name', default_value=world_name,
         description='Specify Gazebo world name')
@@ -66,18 +70,23 @@ def generate_launch_description():
     )
 
     # Add namespace to rviz config file
-    namespaced_rviz_config_file = ReplaceString(
+    robot1_namespaced_rviz_config_file = ReplaceString(
         source_file=PathJoinSubstitution([get_package_share_directory('scout_description'),'rviz',
             rviz_config_file]), 
-        replacements={'/robot_namespace': ('/', namespace)})
+        replacements={'/robot_namespace': ('/', robot1_namespace)})
+
+    robot2_namespaced_rviz_config_file = ReplaceString(
+        source_file=PathJoinSubstitution([get_package_share_directory('scout_description'),'rviz',
+            rviz_config_file]), 
+        replacements={'/robot_namespace': ('/', robot2_namespace)})
 
     # Nodes
-    rviz_node = Node(
+    robot1_rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        namespace=namespace,
+        namespace=robot1_namespace,
         name='rviz2',
-        arguments=['-d', namespaced_rviz_config_file],
+        arguments=['-d', robot1_namespaced_rviz_config_file],
         condition=IfCondition(use_rviz),
         remappings=[
             ('/tf', 'tf'),
@@ -89,28 +98,65 @@ def generate_launch_description():
         ]
     )
 
-    robot_state_publisher_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(launch_file_dir, 'scout_v2_robot_state_publisher.launch.py')
-        ),
-        launch_arguments={'use_sim_time': use_sim_time,
-                          'namespace': namespace}.items()
+    robot2_rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        namespace=robot2_namespace,
+        name='rviz2',
+        arguments=['-d', robot2_namespaced_rviz_config_file],
+        condition=IfCondition(use_rviz),
+        remappings=[
+            ('/tf', 'tf'),
+            ('/tf_static', 'tf_static'),
+            ('/goal_pose', 'goal_pose'),
+            ('/clicked_point', 'clicked_point'),
+            ('/initialpose', 'initialpose'),
+            ('/move_base_simple/goal', 'move_base_simple/goal')
+        ]
     )
 
-    robot_spawn_cmd = IncludeLaunchDescription(
+    robot1_state_publisher_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(launch_file_dir, 'spawn_scout_v2.launch.py')
+            os.path.join(launch_file_dir, 'scout_mini_robot_state_publisher.launch.py')
+        ),
+        launch_arguments={'use_sim_time': use_sim_time,
+                          'namespace': robot1_namespace}.items()
+    )
+
+    robot2_state_publisher_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(launch_file_dir, 'scout_mini_robot_state_publisher.launch.py')
+        ),
+        launch_arguments={'use_sim_time': use_sim_time,
+                          'namespace': robot2_namespace}.items()
+    )
+
+    robot1_spawn_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(launch_file_dir, 'spawn_scout_mini.launch.py')
         ),
         launch_arguments={
-            'namespace': namespace,
-            'x_pose': x_pose,
-            'y_pose': y_pose,
-            'yaw_pose': yaw_pose
+            'namespace': robot1_namespace,
+            'x_pose': robot1_x_pose,
+            'y_pose': robot1_y_pose,
+            'yaw_pose': robot1_yaw_pose
         }.items()
     )
     
-    ld = LaunchDescription()
+    robot2_spawn_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(launch_file_dir, 'spawn_scout_mini.launch.py')
+        ),
+        launch_arguments={
+            'namespace': robot2_namespace,
+            'x_pose': robot2_x_pose,
+            'y_pose': robot2_y_pose,
+            'yaw_pose': robot2_yaw_pose
+        }.items()
+    )
 
+    ld = LaunchDescription()
+    
     # Declare the launch options
     ld.add_action(declare_world_name_arg)
     ld.add_action(declare_user_rviz_arg)
@@ -119,9 +165,12 @@ def generate_launch_description():
     # Add the commands to the launch description
     ld.add_action(gzserver_cmd)
     ld.add_action(gzclient_cmd)
-    ld.add_action(robot_state_publisher_cmd)
-    ld.add_action(robot_spawn_cmd)
-    ld.add_action(rviz_node)
+    ld.add_action(robot1_state_publisher_cmd)
+    ld.add_action(robot2_state_publisher_cmd)
+    ld.add_action(robot1_spawn_cmd)
+    ld.add_action(robot2_spawn_cmd)
+    ld.add_action(robot1_rviz_node)
+    ld.add_action(robot2_rviz_node)
 
     return ld
 
