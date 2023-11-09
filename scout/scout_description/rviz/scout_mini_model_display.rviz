@@ -94,7 +94,7 @@ Visualization Manager:
       Name: RobotModel
       Description Source: Topic
       Description Topic:
-        Value: /robot_description
+        Value: /robot_namespace/robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
@@ -139,22 +139,11 @@ Visualization Manager:
     Frame Rate: 30
   Name: root
   Tools:
-    - Class: rviz_default_plugins/Interact
-      Hide Inactive Objects: true
     - Class: rviz_default_plugins/MoveCamera
     - Class: rviz_default_plugins/Select
     - Class: rviz_default_plugins/FocusCamera
     - Class: rviz_default_plugins/Measure
-    - Class: rviz_default_plugins/SetInitialPose
-      Theta std deviation: 0.2617993950843811
-      Topic: /initialpose
-      X std deviation: 0.5
-      Y std deviation: 0.5
-    - Class: rviz_default_plugins/SetGoal
-      Topic: /move_base_simple/goal
-    - Class: rviz_default_plugins/PublishPoint
-      Single click: true
-      Topic: /clicked_point
+      Line color: 128; 128; 0
   Value: true
   Views:
     Current:
