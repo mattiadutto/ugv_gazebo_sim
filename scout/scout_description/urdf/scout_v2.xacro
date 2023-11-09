@@ -3,7 +3,7 @@
 <robot name="scout_v2" 
     xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:arg name="urdf_extras" default="empty.urdf" />
+    <xacro:arg name="urdf_extras" default="scout_v2_extras.urdf" />
 
     <!-- Variables -->
     <xacro:property name="M_PI" value="3.14159"/>

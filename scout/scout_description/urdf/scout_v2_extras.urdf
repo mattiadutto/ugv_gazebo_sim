@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- This file is a placeholder which is included by default from
+       scout_v2.xacro. If a robot is being customized and requires
+       additional URDF, set the urdf_extras environment variable
+       to the full path of the file you would like included. -->
+</robot>

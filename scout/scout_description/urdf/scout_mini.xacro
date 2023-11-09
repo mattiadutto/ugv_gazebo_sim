@@ -3,7 +3,7 @@
 <robot name="scout_mini"
     xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:arg name="urdf_extras" default="empty.urdf" />
+    <xacro:arg name="urdf_extras" default="scout_mini_extras.urdf" />
 
     <!-- Vehicle Geometries -->
     <xacro:property name="wheelbase" value="0.3132556"/>
@@ -21,13 +21,13 @@
     <!-- Base link -->
     <link name="base_link">
         <visual>
-            <origin xyz="0.015 0.0231316650320557 0" rpy="1.57 0 0"/>
+            <origin xyz="0.015 0.0231316650320557 0" rpy="1.57 0 -1.57"/>
             <geometry>
                 <mesh filename="package://scout_description/meshes/scout_mini_base_link.dae" />
             </geometry>
         </visual>
         <collision>
-            <origin xyz="0.015 0.0231316650320557 0" rpy="1.57 0 0"/>
+            <origin xyz="0.015 0.0231316650320557 0" rpy="1.57 0 -1.57"/>
           <geometry>
             <mesh
               filename="package://scout_description/meshes/scout_mini_base_link.dae" />
@@ -72,7 +72,7 @@
     </link>
 
     <joint name="front_right_wheel" type="continuous">
-        <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 1.57 0" />
+        <origin xyz="${track/2} ${-wheelbase/2} ${wheel_vertical_offset}" rpy="1.57 0 0" />
         <parent link="base_link"/>
         <child link="front_right_wheel_link"/>
         <axis xyz="0 0 -1" rpy="0 0 0" />
@@ -99,7 +99,7 @@
     </link>
 
     <joint name="front_left_wheel" type="continuous">
-        <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 -1.57 0" />
+        <origin xyz="${track/2} ${wheelbase/2} ${wheel_vertical_offset}" rpy="-1.57 0 0" />
         <parent link="base_link"/>
         <child link="front_left_wheel_link"/>
         <axis xyz="0 0 1" rpy="0 0 0" />
@@ -126,7 +126,7 @@
     </link>
 
     <joint name="rear_right_wheel" type="continuous">
-        <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 1.57 0" />
+        <origin xyz="${-track/2} ${-wheelbase/2} ${wheel_vertical_offset}" rpy="1.57 0 0" />
         <parent link="base_link"/>
         <child link="rear_right_wheel_link"/>
         <axis xyz="0 0 -1" rpy="0 0 0" />
@@ -153,7 +153,7 @@
     </link>
 
     <joint name="rear_left_wheel" type="continuous">
-        <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 -1.57 0" />
+        <origin xyz="${-track/2} ${wheelbase/2} ${wheel_vertical_offset}" rpy="-1.57 0 0" />
         <parent link="base_link"/>
         <child link="rear_left_wheel_link"/>
         <axis xyz="0 0 1" rpy="0 0 0" />
