@@ -1,0 +1,161 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='workshop_small'>
+
+    <link name='Wall_1'>
+      <collision name='Wall_1_Collision'>
+        <geometry>
+          <box>
+            <size>6.26 0.15 1</size>
+          </box>
+        </geometry>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+      </collision>
+      <visual name='Wall_1_Visual'>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>6.26 0.15 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <pose frame=''>-0.0745 2.24856 0 0 0 0</pose>
+    </link>
+    
+    <link name='Wall_2'>
+      <collision name='Wall_2_Collision'>
+        <geometry>
+          <box>
+            <size>4.68 0.15 1</size>
+          </box>
+        </geometry>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+      </collision>
+      <visual name='Wall_2_Visual'>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>4.68 0.15 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <pose frame=''>3.1295 -0.01 0 0 0 -1.5708</pose>
+    </link>
+    
+    <link name='Wall_3'>
+      <collision name='Wall_3_Collision'>
+        <geometry>
+          <box>
+            <size>4.557060 0.15 1</size>
+          </box>
+        </geometry>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+      </collision>
+      <visual name='Wall_3_Visual'>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>4.557060 0.15 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <pose frame=''>-3.129500 -0.075000 0 0 0 -1.5708</pose>
+    </link>
+    
+    <link name='Wall_4'>
+      <collision name='Wall_4_Collision'>
+        <geometry>
+          <box>
+            <size>6.26 0.15 1</size>
+          </box>
+        </geometry>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+      </collision>
+      <visual name='Wall_4_Visual'>
+        <pose frame=''>0 0 0.5 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>6.26 0.15 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <pose frame=''>-0.0745 -2.278500 0 0 0 0</pose>
+    </link>
+    
+    <link name='Floor'>
+      <collision name='Floor_Collision'>
+        <geometry>
+          <box>
+            <size>6.099 4.38 0.013</size>
+          </box>
+        </geometry>
+        <pose frame=''>0 0 0.0065 0 0 0</pose>
+	 <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+            </ode>
+          </friction>
+	<bounce/>
+            <contact>
+              <ode/>
+            </contact>
+        </surface>
+ 	<max_contacts>10</max_contacts>
+      </collision>
+      <visual name='Floor_Visual'>
+        <pose frame=''>0 0 0.0065 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>6.099 4.38 0.013</size>
+          </box>
+        </geometry>
+           <material>
+          <script>
+            <uri>model://world_workshop_small/materials/scripts</uri>
+            <uri>model://world_workshop_small/materials/textures</uri>
+            <name>rubber</name>
+          </script>
+        </material>
+      </visual>
+      <pose frame=''>-0.005116 -0.013556 0 0 0 0</pose>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+    </link>
+    <static>1</static>
+  </model>
+</sdf>
