@@ -1,18 +1,8 @@
 <?xml version="1.0" ?>
 <sdf version='1.7'>
   <model name='scout_mini'>
-  
-    <!-- Just for testing
-    <joint name='world_to_base_link' type='fixed'>
-      <pose relative_to='__model__'>0 0 0.5 0 0 0</pose>
-      <parent>world</parent>
-      <child>base_link</child>
-    </joint> -->
-
     <!-- Base link -->
     <link name='base_link'> 
-      <!-- <pose relative_to='world_to_base_link'>0 0 0 0 0 0</pose> -->
-
       <inertial>
         <mass>60</mass>
         <inertia>
@@ -45,7 +35,7 @@
         </geometry>
       </visual>
     </link>
-
+ 
     <!-- Scout wheels -->
     <link name='rear_left_wheel_link'>
       <pose relative_to='rear_left_wheel'>0 0 0 0 0 0</pose>
@@ -330,7 +320,6 @@
       <!-- topics & remappings -->
       <ros>
         <namespace>/robot_namespace</namespace>
-        <remapping>/tf:=tf</remapping>
       </ros>
         
       <!-- Update rate -->
@@ -359,10 +348,11 @@
 
       <!-- output -->
       <publish_odom>true</publish_odom>
-      <publish_odom_tf>false</publish_odom_tf>
+      <publish_odom_tf>true</publish_odom_tf>
       <publish_wheel_tf>false</publish_wheel_tf>
 
       <odometry_frame>odom</odometry_frame>
+      <odometry_topic>odom</odometry_topic> 
       <robot_base_frame>base_link</robot_base_frame>
     </plugin>
 
@@ -485,15 +475,15 @@
         <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
           <ros>
             <namespace>/robot_namespace</namespace>
-            <remapping>~/out:=scan</remapping>
+            <remapping>~/out:=scan</remapping>        
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
           <frame_name>base_scan</frame_name>
         </plugin>
       </sensor>
-    </link>
-
-    <joint name="lidar_joint" type="fixed">
+    </link> 
+    
+     <joint name="lidar_joint" type="fixed">
       <parent>base_link</parent>
       <child>base_scan</child>
       <pose>0 0 0 0 0 0</pose>
