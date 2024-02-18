@@ -4,7 +4,8 @@
   <name>scout_description</name>
   <version>0.0.0</version>
   <description>Agilex Scout description package</description>
-  <maintainer email="luca.bascetta@polimi.it">tgrip</maintainer>
+  <maintainer email="luca.bascetta@polimi.it">Luca Bascetta</maintainer>
+  <maintainer email="mattia.dutto@polito.it">Mattia Dutto</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
@@ -16,6 +17,7 @@
   <depend>joint_state_broadcaster</depend>
   <depend>joint_trajectory_controller</depend>
   <depend>velocity_controllers</depend>
+  <depend>twist_mux</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

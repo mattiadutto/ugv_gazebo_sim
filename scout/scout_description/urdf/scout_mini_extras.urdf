@@ -28,13 +28,18 @@
     </joint>
     
     <!-- lidar sensor -->
+    <joint name="scan_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="base_scan"/>
+      <axis xyz="0 1 0"/>
+      <origin xyz="0.17 0 0.1" rpy="0 0 0"/>
+    </joint>
+    
     <link name="base_scan">
-      <visual>
-        <geometry>
-           <cylinder length="0.038" radius="0.041"/>
-        </geometry>
-        <color rgba="0.3 0.3 0.3 1.0"/>
-      </visual>
+      <inertial>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+        <mass value="0.2" />
+      </inertial>
 
       <collision>
         <geometry>
@@ -42,18 +47,52 @@
         </geometry>
       </collision>
 
-      <inertial>
-        <mass value="0.2" />
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
-      </inertial>
+      <visual>
+        <geometry>
+           <cylinder length="0.038" radius="0.041"/>
+        </geometry>
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </visual>
     </link>
 
-    <joint name="scan_joint" type="fixed">
-      <parent link="base_link"/>
-      <child link="base_scan"/>
-      <origin xyz="0.17 0 0.1" rpy="0 0 0"/>
-    </joint>
-
+    <gazebo reference="base_scan">
+      <sensor name="rplidar_a3" type="ray">
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1600</samples>
+              <resolution>0.225</resolution>
+              <min_angle>0.00</min_angle>
+              <max_angle>6.28</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.2</min>
+            <max>12.0</max>
+            <resolution>0.12</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        
+        <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+            <namespace>/robot_namespace</namespace>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frame_name>base_scan</frame_name>
+        </plugin>
+      </sensor>
+    </gazebo>
+  
     <!-- GPS sensor -->
     <link name="gps_link">
       <visual name="gps_antenna">

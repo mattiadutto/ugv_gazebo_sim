@@ -10,93 +10,106 @@ from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from nav2_common.launch import ReplaceString
 
- 
+
 def generate_launch_description():
     # Manage input arguments
-    use_gui_value = LaunchConfiguration('use_gui')
- 
+    use_gui_value = LaunchConfiguration("use_gui")
+
     use_gui_launch_arg = DeclareLaunchArgument(
-        'use_gui',
-        default_value='False',
-        description='Select if you want to start the gui.'
+        "use_gui",
+        default_value="False",
+        description="Select if you want to start the gui.",
     )
-    
-    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
+    use_sim_time = LaunchConfiguration("use_sim_time", default="false")
 
     use_sim_time_arg = DeclareLaunchArgument(
-        'use_sim_time',
-        default_value='false',
-        description='Use simulation (Gazebo) clock if true'
+        "use_sim_time",
+        default_value="false",
+        description="Use simulation (Gazebo) clock if true",
     )
 
     # Specify the name of the package, xacro and rviz files within the package
-    pkg_name = 'scout_description'
-    xacro_file = 'scout_mini.xacro'
-    rviz_config_file = 'scout_mini_model_display.rviz'
+    pkg_name = "scout_description"
+    xacro_file = "scout_mini.xacro"
+    rviz_config_file = "scout_mini.rviz"
 
     # Create paths to xacro and rviz files
-    xacro_path = os.path.join(get_package_share_directory(pkg_name),'urdf',xacro_file)
-    rviz_config_path = os.path.join(get_package_share_directory(pkg_name),'rviz',rviz_config_file)
+    xacro_path = os.path.join(get_package_share_directory(pkg_name), "urdf", xacro_file)
+    rviz_config_path = os.path.join(
+        get_package_share_directory(pkg_name), "rviz", rviz_config_file
+    )
     robot_description_raw = xacro.process_file(xacro_path).toxml()
 
     # Add namespace to rviz config file
     namespaced_rviz_config_file = ReplaceString(
-        source_file=PathJoinSubstitution([get_package_share_directory('scout_description'),'rviz',
-            rviz_config_file]), 
-        replacements={'/robot_namespace': ('/', 'scout_mini')})
+        source_file=PathJoinSubstitution(
+            [get_package_share_directory(pkg_name), "rviz", rviz_config_file]
+        ),
+        replacements={"/robot_namespace": ("/", "scout_mini")},
+    )
 
     # Configure the nodes
     node_joint_state_publisher_gui = Node(
-        namespace='scout_mini',
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        output='screen',
-        parameters=[{'use_sim_time': use_sim_time}],
-        condition=launch.conditions.IfCondition(use_gui_value)
+        namespace="scout_mini",
+        package="joint_state_publisher_gui",
+        executable="joint_state_publisher_gui",
+        output="screen",
+        parameters=[{"use_sim_time": use_sim_time}],
+        condition=launch.conditions.IfCondition(use_gui_value),
     )
 
     node_joint_state_publisher = Node(
-        namespace='scout_mini',
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        output='screen',
-        parameters=[{'use_sim_time': use_sim_time}],
-        condition=launch.conditions.UnlessCondition(use_gui_value)
+        namespace="scout_mini",
+        package="joint_state_publisher",
+        executable="joint_state_publisher",
+        output="screen",
+        parameters=[{"use_sim_time": use_sim_time}],
+        condition=launch.conditions.UnlessCondition(use_gui_value),
     )
 
     node_robot_state_publisher = Node(
-        namespace='scout_mini',
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        output='screen',
-        parameters=[{'robot_description': robot_description_raw,
-        'use_sim_time': use_sim_time}],
-        remappings=[
-            ('/tf', 'tf'),
-            ('/tf_static', 'tf_static')
-       ]
+        namespace="scout_mini",
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        output="screen",
+        parameters=[
+            {"robot_description": robot_description_raw, "use_sim_time": use_sim_time}
+        ],
+    )
+
+    # File with twist_mux params
+    twist_mux_params = os.path.join(
+        get_package_share_directory(pkg_name), "config", "twist_mux.yaml"
+    )
+
+    # Add the twist_mux node
+    twist_mux_node = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        output="screen",
+        remappings={("/cmd_vel_out", "cmd_vel")},
+        parameters=[twist_mux_params],
     )
 
     rviz = Node(
-        namespace='scout_mini',
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', namespaced_rviz_config_file],
-        remappings=[
-            ('/tf', 'tf'),
-            ('/tf_static', 'tf_static')
-        ]
+        namespace="scout_mini",
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", namespaced_rviz_config_file],
     )
 
     # Run the nodes
-    return LaunchDescription([
-        use_sim_time_arg,
-        use_gui_launch_arg,
-        node_joint_state_publisher_gui,
-        node_joint_state_publisher,
-        node_robot_state_publisher,
-        rviz,
-    ])
-
+    return LaunchDescription(
+        [
+            use_sim_time_arg,
+            use_gui_launch_arg,
+            twist_mux_node,
+            node_joint_state_publisher_gui,
+            node_joint_state_publisher,
+            node_robot_state_publisher,
+            rviz,
+        ]
+    )
