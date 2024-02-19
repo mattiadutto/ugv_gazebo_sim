@@ -320,8 +320,8 @@
       <!-- topics & remappings -->
       <ros>
         <namespace>/robot_namespace</namespace>
+        <remapping>/tf:=tf</remapping>
       </ros>
-        
       <!-- Update rate -->
       <update_rate>50</update_rate>
 

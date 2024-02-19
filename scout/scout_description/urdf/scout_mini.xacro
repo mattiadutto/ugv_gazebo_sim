@@ -170,8 +170,9 @@
       <!-- topics & remappings -->
       <ros>
         <namespace>/robot_namespace</namespace>
+        <remapping>/tf:=tf</remapping>
       </ros>
-        
+      
       <!-- Update rate -->
       <update_rate>50</update_rate>
 
@@ -199,7 +200,7 @@
       <!-- output -->
       <publish_odom>true</publish_odom>
       <publish_odom_tf>true</publish_odom_tf> 
-      <publish_wheel_tf>true</publish_wheel_tf> 
+      <publish_wheel_tf>false</publish_wheel_tf> 
 
       <odometry_frame>odom</odometry_frame>
       <odometry_topic>odom</odometry_topic> 

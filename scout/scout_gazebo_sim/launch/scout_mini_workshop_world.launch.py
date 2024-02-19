@@ -101,6 +101,8 @@ def generate_launch_description():
             ("/clicked_point", "clicked_point"),
             ("/initialpose", "initialpose"),
             ("/move_base_simple/goal", "move_base_simple/goal"),
+            ("/tf", "tf"),
+            ("/tf_static", "tf_static"),
         ],
     )
 

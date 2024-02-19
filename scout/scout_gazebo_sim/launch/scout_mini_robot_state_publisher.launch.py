@@ -42,6 +42,8 @@ def generate_launch_description():
         parameters=[
             {"use_sim_time": use_sim_time, "robot_description": robot_description_raw}
         ],
+        # arguments=[robot_description_raw],
+        remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
     )
 
     return LaunchDescription(
