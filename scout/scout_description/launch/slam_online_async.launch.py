@@ -32,8 +32,9 @@ def generate_launch_description():
         output="screen",
         parameters=[slam_params_file, {"use_sim_time": use_sim_time}],
         # namespace="scout_mini",
-        # remappings=[("/scan", "scan")],
-        # remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
+        remappings=[("/scan", "/scout_mini/scan"),
+                    ("/tf", "/scout_mini/tf"), 
+                    ("/tf_static", "/scout_mini/tf_static")],
     )
 
     ld = LaunchDescription()
