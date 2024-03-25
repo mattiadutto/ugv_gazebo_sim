@@ -9,4 +9,8 @@
         topic   : /cmd_vel_joypad
         timeout : 0.01
         priority: 100
+      keyobard:
+        topic   : /cmd_vel_key
+        timeout : 0.01
+        priority: 100
     

@@ -348,11 +348,11 @@
 
       <!-- output -->
       <publish_odom>true</publish_odom>
-      <publish_odom_tf>true</publish_odom_tf>
+      <publish_odom_tf>true</publish_odom_tf> <!-- set to false if we use navigation, true if we use slam, true also if we don't use localization nodes in nav2 stack -->
       <publish_wheel_tf>false</publish_wheel_tf>
 
       <odometry_frame>odom</odometry_frame>
-      <odometry_topic>odom</odometry_topic> 
+      <odometry_topic>odom</odometry_topic>
       <robot_base_frame>base_link</robot_base_frame>
     </plugin>
 
@@ -551,8 +551,8 @@
         <plugin name="gps_controller" filename="libgazebo_ros_gps_sensor.so">
             <ros>
                 <namespace>/robot_namespace</namespace>
-                <remapping>gps_controller/out:=gps</remapping>
-                <remapping>gps_controller/vel:=gps/vel</remapping>
+                <remapping>gps_controller/out:=fix</remapping> <!-- Previously was on :=gps -->
+                <remapping>gps_controller/vel:=fix/vel</remapping> <!-- Previously was on :=gps/vel -->
             </ros>
             <frame_name>gps_link</frame_name>
         </plugin>
