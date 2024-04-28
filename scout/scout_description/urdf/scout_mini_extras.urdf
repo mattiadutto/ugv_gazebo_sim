@@ -134,4 +134,8 @@
       <child link="gps_link"/>
       <origin xyz="-0.14 -0.1 0.3" rpy="0 0 0"/>
     </joint>
+
+
+    <!-- Depth Camera -->
+    <xacro:include filename="d435.urdf" /> 
 </robot>
