@@ -13,7 +13,7 @@
   <link name="base_link">
 
     <visual>
-      <origin xyz="0.53 -0.392 -0.358" rpy="1.57 0 0" />
+      <origin xyz="0.53 -0.392 -0.358" rpy="1.57 0 -3.14" />
       <geometry>
         <mesh filename="package://bunker_description/meshes/bunker.stl" scale="0.001 0.001 0.001" />
       </geometry>
@@ -23,13 +23,13 @@
     </visual>
     
     <collision>
-      <origin xyz="0.53 -0.392 -0.358" rpy="1.57 0 0" />
+      <origin xyz="0.53 -0.392 -0.358" rpy="1.57 0 -3.14" />
       <geometry>
         <mesh filename="package://bunker_description/meshes/bunker.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
   </link>
-  
+  <!--
   <link name="inertial_link">
     <inertial>
       <origin xyz="0.0212410555532523 0.00475458359568469 -0.127580557949736" rpy="0 0 0" />
@@ -539,5 +539,5 @@
     <child link="rear_right_wheel_rol3_link" />
     <axis xyz="0 0 1" />
   </joint>
-  
+  -->
 </robot>
