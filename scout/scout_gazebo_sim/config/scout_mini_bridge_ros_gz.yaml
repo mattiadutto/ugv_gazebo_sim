@@ -1,0 +1,48 @@
+# Clock
+- ros_topic_name: "clock"       
+  gz_topic_name: "clock"          
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "ignition.msgs.Clock"
+  direction: "IGN_TO_ROS"   
+  
+# Laser scan (LiDAR)
+- ros_topic_name: "scout_mini/scan" 
+  gz_topic_name: "scout_mini/scan"           
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "ignition.msgs.LaserScan" 
+  direction: "IGN_TO_ROS" 
+
+# Camera info
+- ros_topic_name: "scout_mini/rgb_cam/camera_info"
+  gz_topic_name: "scout_mini/rgb_cam/camera_info"         
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "ignition.msgs.CameraInfo" 
+  direction: "IGN_TO_ROS"          
+
+# Odom - diff drive
+- ros_topic_name: "scout_mini/odom"
+  gz_topic_name: "odom"              
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "ignition.msgs.Odometry" 
+  direction: "IGN_TO_ROS"               
+
+# Tf - diff drive
+- ros_topic_name: "scout_mini/tf"
+  gz_topic_name: "tf"         
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "ignition.msgs.Pose_V" 
+  direction: "IGN_TO_ROS"           
+
+# cmd_vel
+- ros_topic_name: "scout_mini/cmd_vel"
+  gz_topic_name: "cmd_vel"         
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "ignition.msgs.Twist" 
+  direction: "ROS_TO_IGN"          
+
+# joint state publisher
+- ros_topic_name: "scout_mini/joint_states"
+  gz_topic_name: "joint_states"        
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "ignition.msgs.Model" 
+  direction: "IGN_TO_ROS" 
