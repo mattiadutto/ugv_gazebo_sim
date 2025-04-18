@@ -11,13 +11,6 @@ from nav2_common.launch import ReplaceString
 
 
 def generate_launch_description():
-    # Get the urdf file
-    sdf_path = os.path.join(
-        get_package_share_directory("scout_gazebo_sim"),
-        "models",
-        "scout_mini",
-        "scout_mini.sdf",
-    )
 
     # Launch configuration variables specific to simulation
     namespace = LaunchConfiguration("namespace", default="scout_mini")
@@ -40,17 +33,6 @@ def generate_launch_description():
 
     declare_yaw_pose_arg = DeclareLaunchArgument(
         "yaw_pose", default_value=yaw_pose, description="Specify robot yaw angle"
-    )
-
-    # Add namespace to gazebo model file
-    namespaced_sdf_file = ReplaceString(
-        source_file=os.path.join(
-            get_package_share_directory("scout_gazebo_sim"),
-            "models",
-            "scout_mini",
-            "scout_mini.sdf",
-        ),
-        replacements={"/robot_namespace": ("/", namespace)},
     )
 
     # Nodes

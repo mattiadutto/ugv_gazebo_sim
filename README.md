@@ -30,7 +30,7 @@ Download and install gazebo you can go to the website :https://gazebosim.org/doc
 
 ## About usage
 
-1) clone the current repositories to your own workspace
+1) Clone the current repositories to your own workspace
 2) Go to you use product
 3) Each independent chassis product has its own independent instructions in the corresponding file directory
 
@@ -38,4 +38,4 @@ Download and install gazebo you can go to the website :https://gazebosim.org/doc
 A few notes:
 > The idea is to extend this repository to support the Bunker robot in simulation, and later, when I will move to a newer version of ROS2 and Gazebo update for the already supported robot.
 
-> Feel free to write to me or to open a pull request if you want to expand the support.
+> Feel free to write to me or to open a pull request if you want to expand the support. 
