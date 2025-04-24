@@ -1,0 +1,34 @@
+# Clock
+- ros_topic_name: "clock"
+  gz_topic_name: "clock"
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "ignition.msgs.Clock"
+  direction: "IGN_TO_ROS"
+
+# Odom - diff drive
+- ros_topic_name: "bunker/odom"
+  gz_topic_name: "odom"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "ignition.msgs.Odometry"
+  direction: "IGN_TO_ROS"
+
+# TF - diff drive
+- ros_topic_name: "bunker/tf"
+  gz_topic_name: "tf"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "ignition.msgs.Pose_V"
+  direction: "IGN_TO_ROS"
+
+# cmd_vel
+- ros_topic_name: "bunker/cmd_vel"
+  gz_topic_name: "cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "ignition.msgs.Twist"
+  direction: "ROS_TO_IGN"
+
+# Joint state publisher
+- ros_topic_name: "bunker/joint_states"
+  gz_topic_name: "joint_states"
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "ignition.msgs.Model"
+  direction: "IGN_TO_ROS"

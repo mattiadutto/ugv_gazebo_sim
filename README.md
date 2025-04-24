@@ -15,7 +15,7 @@ Download and install gazebo you can go to the website :https://gazebosim.org/doc
 
 | Product name     | support status |
 | :--------------- | -------------- |
-| BUNKER           | Planned        |
+| BUNKER           | √              |
 | HUNTER 1.0       |                |
 | HUNTER 2.0       |                |
 | HUNTER SE        |                |
