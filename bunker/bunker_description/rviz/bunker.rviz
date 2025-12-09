@@ -27,10 +27,6 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: ""
-  - Class: nav2_rviz_plugins/Navigation 2
-    Name: Navigation 2
-  - Class: slam_toolbox::SlamToolboxPlugin
-    Name: SlamToolboxPlugin
 Visualization Manager:
   Class: ""
   Displays:
@@ -54,6 +50,8 @@ Visualization Manager:
       Value: true
     - Class: rviz_default_plugins/TF
       Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: true
@@ -77,6 +75,30 @@ Visualization Manager:
           Value: true
         inertial_link:
           Value: true
+        left_track_front_wheel0:
+          Value: true
+        left_track_front_wheel1:
+          Value: true
+        left_track_rear_wheel0:
+          Value: true
+        left_track_rear_wheel1:
+          Value: true
+        left_track_wheel0:
+          Value: true
+        left_track_wheel1:
+          Value: true
+        left_track_wheel2:
+          Value: true
+        left_track_wheel3:
+          Value: true
+        left_track_wheel4:
+          Value: true
+        left_track_wheel5:
+          Value: true
+        left_track_wheel6:
+          Value: true
+        odom:
+          Value: true
         rear_left_wheel_link:
           Value: true
         rear_left_wheel_rol1_link:
@@ -92,6 +114,28 @@ Visualization Manager:
         rear_right_wheel_rol2_link:
           Value: true
         rear_right_wheel_rol3_link:
+          Value: true
+        right_track_front_wheel0:
+          Value: true
+        right_track_front_wheel1:
+          Value: true
+        right_track_rear_wheel0:
+          Value: true
+        right_track_rear_wheel1:
+          Value: true
+        right_track_wheel0:
+          Value: true
+        right_track_wheel1:
+          Value: true
+        right_track_wheel2:
+          Value: true
+        right_track_wheel3:
+          Value: true
+        right_track_wheel4:
+          Value: true
+        right_track_wheel5:
+          Value: true
+        right_track_wheel6:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -118,6 +162,28 @@ Visualization Manager:
             {}
           inertial_link:
             {}
+          left_track_front_wheel0:
+            {}
+          left_track_front_wheel1:
+            {}
+          left_track_rear_wheel0:
+            {}
+          left_track_rear_wheel1:
+            {}
+          left_track_wheel0:
+            {}
+          left_track_wheel1:
+            {}
+          left_track_wheel2:
+            {}
+          left_track_wheel3:
+            {}
+          left_track_wheel4:
+            {}
+          left_track_wheel5:
+            {}
+          left_track_wheel6:
+            {}
           rear_left_wheel_link:
             {}
           rear_left_wheel_rol1_link:
@@ -134,6 +200,30 @@ Visualization Manager:
             {}
           rear_right_wheel_rol3_link:
             {}
+          right_track_front_wheel0:
+            {}
+          right_track_front_wheel1:
+            {}
+          right_track_rear_wheel0:
+            {}
+          right_track_rear_wheel1:
+            {}
+          right_track_wheel0:
+            {}
+          right_track_wheel1:
+            {}
+          right_track_wheel2:
+            {}
+          right_track_wheel3:
+            {}
+          right_track_wheel4:
+            {}
+          right_track_wheel5:
+            {}
+          right_track_wheel6:
+            {}
+        odom:
+          {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -203,6 +293,61 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        left_track_front_wheel0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_front_wheel1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_rear_wheel0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_rear_wheel1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_wheel6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         rear_left_wheel_link:
           Alpha: 1
           Show Axes: false
@@ -239,6 +384,61 @@ Visualization Manager:
           Show Trail: false
           Value: true
         rear_right_wheel_rol3_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_front_wheel0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_front_wheel1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_rear_wheel0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_rear_wheel1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_wheel6:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -318,17 +518,13 @@ Visualization Manager:
       Yaw: 5.182382106781006
     Saved: ~
 Window Geometry:
+  Height: 836
+  Width: 1440
+  X: 0
+  Y: 27
   Displays:
     collapsed: false
-  Height: 836
-  Hide Left Dock: false
-  Hide Right Dock: false
-  Navigation 2:
-    collapsed: false
-  QMainWindow State: 000000ff00000000fd000000040000000000000217000002a6fc020000000cfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000002a6000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610000000228000000bb0000000000000000fb00000018004e0061007600690067006100740069006f006e0020003200000001aa000001390000013900fffffffb0000000c00430061006d00650072006100000001c80000011b0000000000000000fb000000220053006c0061006d0054006f006f006c0062006f00780050006c007500670069006e000000015e000001850000018500ffffff000000010000010f000002a6fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d000002a6000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005a00000003efc0100000002fb0000000800540069006d00650100000000000005a0000002fb00fffffffb0000000800540069006d006501000000000000045000000000000000000000026e000002a600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
-    collapsed: false
-  SlamToolboxPlugin:
     collapsed: false
   Time:
     collapsed: false
@@ -336,6 +532,3 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1440
-  X: 0
-  Y: 27
