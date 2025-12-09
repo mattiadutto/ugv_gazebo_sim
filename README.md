@@ -1,5 +1,5 @@
 # AgileX Product Gazebo Harmonic Simulate
-This repository is working with ROS2 Humble and Gazebo Harmonic.
+This repository is working with ROS2 Jazzy and Gazebo Harmonic.
 
 ## Install the Gazebo software
 
