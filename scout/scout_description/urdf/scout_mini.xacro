@@ -1,45 +1,40 @@
 <?xml version="1.0"?>
 
-<robot name="scout_mini" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="scout_mini"
+    xmlns:xacro="http://ros.org/wiki/xacro">
     <!-- Vehicle Geometries -->
     <!-- Base link -->
     <link name="base_link">
         <visual>
             <origin xyz="0 0 0" rpy="1.57 0 -1.57" />
             <geometry>
-                <mesh
-                    filename="package://scout_description/meshes/scout_mini_base_link.dae" />
+                <mesh filename="package://scout_description/meshes/scout_mini_base_link.dae" />
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="1.57 0 -1.57" />
             <geometry>
-                <mesh
-                    filename="package://scout_description/meshes/scout_mini_base_link.dae" />
+                <mesh filename="package://scout_description/meshes/scout_mini_base_link.dae" />
             </geometry>
         </collision>
     </link>
 
-    <link
-        name="inertial_link">
+    <link name="inertial_link">
         <inertial>
             <mass value="132.3898489950015" />
             <origin xyz=" 0 0 0" />
-            <inertia ixx="0.185196122711036" ixy="4.30144213829512E-08" ixz="5.81037523686401E-08"
-                iyy="0.364893736238929" iyz="-0.000386720198091934" izz="0.223868521722778" />
+            <inertia ixx="0.185196122711036" ixy="4.30144213829512E-08" ixz="5.81037523686401E-08" iyy="0.364893736238929" iyz="-0.000386720198091934" izz="0.223868521722778" />
         </inertial>
     </link>
 
-    <joint
-        name="inertial_joint" type="fixed">
+    <joint name="inertial_joint" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="inertial_link" />
     </joint>
 
     <!-- Scout wheel -->
-    <link
-        name="front_right_wheel_link">
+    <link name="front_right_wheel_link">
         <inertial>
             <mass value="3" />
             <origin xyz="0 0 0" />
@@ -59,8 +54,7 @@
         </collision>
     </link>
 
-    <joint
-        name="front_right_wheel" type="continuous">
+    <joint name="front_right_wheel" type="continuous">
         <origin rpy="1.57 0 0" xyz="0.2319755 -0.2082515 -0.099998" />
         <parent link="base_link" />
         <child link="front_right_wheel_link" />
@@ -87,8 +81,7 @@
         </collision>
     </link>
 
-    <joint
-        name="front_left_wheel" type="continuous">
+    <joint name="front_left_wheel" type="continuous">
         <origin rpy="-1.57 0 0" xyz="0.2319755 0.2082515 -0.100998" />
         <parent link="base_link" />
         <child link="front_left_wheel_link" />
@@ -115,8 +108,7 @@
         </collision>
     </link>
 
-    <joint
-        name="rear_right_wheel" type="continuous">
+    <joint name="rear_right_wheel" type="continuous">
         <origin rpy="1.57 0 0" xyz="-0.2319755 -0.2082515 -0.099998" />
         <parent link="base_link" />
         <child link="rear_right_wheel_link" />
@@ -143,8 +135,7 @@
         </collision>
     </link>
 
-    <joint
-        name="rear_left_wheel" type="continuous">
+    <joint name="rear_left_wheel" type="continuous">
         <origin rpy="-1.57 0 0" xyz="-0.2319755 0.2082515 -0.100998" />
         <parent link="base_link" />
         <child link="rear_left_wheel_link" />
@@ -153,8 +144,7 @@
 
     <!-- Scout gazebo plugin -->
     <gazebo>
-        <plugin filename="libignition-gazebo-joint-state-publisher-system.so"
-            name="ignition::gazebo::systems::JointStatePublisher">
+        <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
             <topic>joint_states</topic>
 
             <update_rate>50</update_rate>
@@ -165,9 +155,7 @@
             <joint_name>rear_left_wheel</joint_name>
         </plugin>
 
-        <plugin
-            filename="libignition-gazebo-diff-drive-system.so"
-            name="ignition::gazebo::systems::DiffDrive">
+        <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
 
             <left_joint>front_left_wheel</left_joint>
             <right_joint>front_right_wheel</right_joint>

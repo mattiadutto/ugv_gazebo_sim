@@ -47,7 +47,6 @@ def generate_launch_description():
 
     # Set GAZEBO environment variables
     install_dir = get_package_prefix("scout_description")
-    gazebo_models_path = os.path.join(pkg_name, "meshes")
 
     if "GZ_SIM_RESOURCE_PATH" in os.environ:
         os.environ["GZ_SIM_RESOURCE_PATH"] = (
@@ -59,14 +58,6 @@ def generate_launch_description():
     os.environ["GZ_SIM_SYSTEM_PLUGIN_PATH"] = ":".join(
         [
             os.environ.get("GZ_SIM_SYSTEM_PLUGIN_PATH", default=""),
-            os.environ.get("LD_LIBRARY_PATH", default=""),
-        ]
-    )
-
-    # To support pre-garden. Deprecated.
-    os.environ["IGN_GAZEBO_SYSTEM_PLUGIN_PATH"] = ":".join(
-        [
-            os.environ.get("IGN_GAZEBO_SYSTEM_PLUGIN_PATH", default=""),
             os.environ.get("LD_LIBRARY_PATH", default=""),
         ]
     )
