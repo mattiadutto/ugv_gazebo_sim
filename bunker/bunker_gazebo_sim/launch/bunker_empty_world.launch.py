@@ -22,7 +22,9 @@ def generate_launch_description():
 
     # Arguments and parameters
     use_rviz = LaunchConfiguration("use_rviz", default="true")
-    rviz_config_file = LaunchConfiguration("rviz_config_file", default="bunker.rviz")
+    rviz_config_file = LaunchConfiguration(
+        "rviz_config_file", default="bunker.rviz"
+    )
     use_sim_time = LaunchConfiguration("use_sim_time", default="true")
     x_pose = LaunchConfiguration("x_pose", default="0.0")
     y_pose = LaunchConfiguration("y_pose", default="0.0")
@@ -45,6 +47,7 @@ def generate_launch_description():
 
     # Set GAZEBO environment variables
     install_dir = get_package_prefix("bunker_description")
+    gazebo_models_path = os.path.join(pkg_name, "meshes")
 
     if "GZ_SIM_RESOURCE_PATH" in os.environ:
         os.environ["GZ_SIM_RESOURCE_PATH"] = (
@@ -60,6 +63,14 @@ def generate_launch_description():
         ]
     )
 
+    # To support pre-garden. Deprecated.
+    os.environ["IGN_GAZEBO_SYSTEM_PLUGIN_PATH"] = ":".join(
+        [
+            os.environ.get("IGN_GAZEBO_SYSTEM_PLUGIN_PATH", default=""),
+            os.environ.get("LD_LIBRARY_PATH", default=""),
+        ]
+    )
+
     world = PathJoinSubstitution(
         [get_package_share_directory(pkg_name), "worlds", world_name]
     )
@@ -70,18 +81,14 @@ def generate_launch_description():
         ),
         launch_arguments={
             "gz_args": ["-r ", world],
-            "on_exit_shutdown": "true",
+            # "on_exit_shutdown": "true",
         }.items(),
     )
 
     # Add namespace to rviz config file
     namespaced_rviz_config_file = ReplaceString(
         source_file=PathJoinSubstitution(
-            [
-                get_package_share_directory("bunker_description"),
-                "rviz",
-                rviz_config_file,
-            ]
+            [get_package_share_directory("bunker_description"), "rviz", rviz_config_file]
         ),
         replacements={"/robot_namespace": ("/", namespace)},
     )

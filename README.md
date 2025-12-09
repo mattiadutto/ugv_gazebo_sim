@@ -1,13 +1,13 @@
-# AgileX Product Gazebo Harmonic Simulate
-This repository is working with ROS2 Humble and Gazebo Harmonic.
+# AgileX Product Gazebo Fortress Simulate
+This repository is working with ROS2 Humble and Gazebo Fortress.
 
 ## Install the Gazebo software
 
 Gazebo is  a simulator. Gazebo simulates multiple robots in a 3D environment, with extensive dynamic interaction between objects.
 
-[Gazebo Harmonic installation guide](https://gazebosim.org/docs/harmonic/install/).
+[Gazebo Fortress installation guide](https://gazebosim.org/docs/fortress/install/).
 
-Download and install gazebo you can go to the website :https://gazebosim.org/docs/harmonic/install/
+Download and install gazebo you can go to the website :https://gazebosim.org/docs/fortress/install/
 
 ------
 
