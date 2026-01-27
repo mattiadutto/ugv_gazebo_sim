@@ -154,7 +154,8 @@
             <joint_name>rear_right_wheel</joint_name>
             <joint_name>rear_left_wheel</joint_name>
         </plugin>
-
+    </gazebo>
+    <gazebo>
         <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
 
             <left_joint>front_left_wheel</left_joint>
@@ -162,21 +163,26 @@
             <left_joint>rear_left_wheel</left_joint>
             <right_joint>rear_right_wheel</right_joint>
 
-            <wheel_separation>0.490</wheel_separation>
-            <wheel_radius>0.160</wheel_radius>
+            <wheel_separation>0.49</wheel_separation>
+            <wheel_radius>0.08</wheel_radius>
 
             <!-- limits -->
             <max_wheel_torque>20</max_wheel_torque>
             <max_linear_acceleration>1.0</max_linear_acceleration>
+            <max_angular_acceleration>1.0</max_angular_acceleration>
+            <min_linear_acceleration>-1.0</min_linear_acceleration>
+            <min_angular_acceleration>-1.0</min_angular_acceleration>
 
-            <!-- Plugin settings -->
-            <topic>cmd_vel</topic>
-            <odom_topic>odom</odom_topic>
-            <tf_topic>tf</tf_topic>
+            <topic>/cmd_vel</topic>
+        </plugin>
+
+        <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+            <odom_frame>odom</odom_frame>
+            <robot_base_frame>base_link</robot_base_frame>
             <odom_publish_frequency>50</odom_publish_frequency>
-
-            <frame_id>odom</frame_id>
-            <child_frame_id>base_link</child_frame_id>
+            <odom_topic>/odom</odom_topic>
+            <tf_topic>/tf</tf_topic>
+            <dimensions>2</dimensions>
         </plugin>
     </gazebo>
 </robot>
